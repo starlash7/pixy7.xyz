@@ -1,13 +1,4 @@
 const splash = document.querySelector("[data-splash]");
-const splashSeenKey = "theo-yang-intro-v2-seen";
-let splashWasSeen = false;
-
-try {
-  splashWasSeen = window.localStorage.getItem(splashSeenKey) === "true";
-} catch {
-  splashWasSeen = false;
-}
-
 const pixelDriftCanvas = document.querySelector("[data-pixel-drift]");
 let stopPixelDrift = () => {};
 
@@ -152,7 +143,7 @@ if (pixelDriftCanvas) {
       };
     };
 
-    if (!pixelDriftReducedMotion && !splashWasSeen && !splash?.classList.contains("is-hidden")) {
+    if (!pixelDriftReducedMotion && !splash?.classList.contains("is-hidden")) {
       createParticles();
       particleAnimationActive = true;
       scheduleParticleAnimation();
@@ -256,14 +247,9 @@ if (splash) {
 
   splashEnter?.addEventListener("click", enterSplash);
 
-  if (reducedMotion || splashWasSeen) {
+  if (reducedMotion) {
     hideSplash();
   } else {
-    try {
-      window.localStorage.setItem(splashSeenKey, "true");
-    } catch {
-      // The animation still completes when storage is unavailable.
-    }
     splashEnter?.focus({ preventScroll: true });
   }
 }

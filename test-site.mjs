@@ -118,11 +118,10 @@ assert.match(css, /background-size:\s*cover/, "supplied background should cover 
 assert.doesNotMatch(homeRevealKeyframes, /transform:/, "home reveal should not move fixed background layers");
 assert.doesNotMatch(css, /background: #e3d7c7/, "main profile should not use a beige background");
 assert.doesNotMatch(css, /background: #e9e2d8/, "dock profile should not use a beige background");
-assert.match(script, /localStorage/, "splash should be remembered locally");
-assert.match(script, /theo-yang-intro-v2-seen/, "the revised intro should use a fresh storage key");
-assert.match(script, /let splashWasSeen = false/, "intro visibility should be known before particle setup");
-assert.match(script, /!splashWasSeen/, "returning visitors should skip particle setup");
-assert.doesNotMatch(script, /theo-yang-splash-seen/, "the revised intro should not reuse the old splash key");
+assert.doesNotMatch(script, /localStorage/, "intro visibility should not depend on local storage");
+assert.doesNotMatch(script, /theo-yang-intro-v2-seen/, "intro should not be hidden after the first visit");
+assert.doesNotMatch(script, /splashWasSeen/, "intro should not track a previous visit");
+assert.match(script, /if \(reducedMotion\) \{[\s\S]*hideSplash\(\);/, "only reduced-motion users should skip the intro");
 assert.match(script, /prefers-reduced-motion/, "splash should respect reduced motion");
 assert.match(script, /getContext\("2d"\)/, "intro should render particles on canvas");
 assert.match(script, /cancelAnimationFrame/, "intro particles should stop their animation loop");
