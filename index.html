@@ -13,189 +13,173 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="splash" data-splash aria-label="Intro">
+      <div class="splash-content">
+        <canvas class="pixel-drift-canvas" data-pixel-drift aria-hidden="true"></canvas>
+        <span class="pixel-drift-fallback" aria-hidden="true">ONCHAIN IN MOTION</span>
+        <button class="splash-enter" type="button" data-splash-enter>Enter</button>
+        <p class="splash-transition" data-splash-transition aria-live="polite" aria-hidden="true"></p>
+      </div>
+    </div>
+
     <div class="page-shell">
       <div class="page-glow page-glow-left"></div>
       <div class="page-glow page-glow-right"></div>
 
       <header class="site-header">
         <a class="brand" href="#top">Theo Yang</a>
-        <div class="header-right">
-          <nav class="site-nav" aria-label="Primary">
-            <a href="#notes">Notes</a>
-          </nav>
-          <div class="social-links" aria-label="Social links">
-            <a
-              class="social-link"
-              href="https://www.linkedin.com/in/pixy7/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-            >
-              <img src="assets/icons/linkedin.svg" alt="" />
-            </a>
-            <a
-              class="social-link"
-              href="https://x.com/Pixy7Crypto"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="X"
-            >
-              <img src="assets/icons/x.svg" alt="" />
-            </a>
-            <a class="social-link" href="mailto:theo@unittx.io" aria-label="Email">
-              <img src="assets/icons/mail.svg" alt="" />
-            </a>
-          </div>
-        </div>
       </header>
 
       <main id="top">
-        <section class="intro" id="about">
-          <p class="intro-label">About</p>
-          <p class="intro-text intro-text-statement">
-            I build things around crypto that feel useful, simple, and worth coming back to.
-          </p>
-          <p class="intro-text intro-text-secondary">
-            <a href="https://unittx.io" target="_blank" rel="noreferrer"
-              >I work at UNIT TX, based in Seoul.</a
-            >
-          </p>
+        <section class="desktop" id="projects" aria-label="Projects desktop">
+          <button class="desktop-item desktop-item-zkps" type="button" data-project="zkps" aria-label="Open Fundamentals of ZKPs">
+            <span class="folder-art folder-art-yellow" aria-hidden="true">
+              <img src="assets/folders/folder-yellow.png" alt="" />
+            </span>
+            <span class="desktop-label"><span class="desktop-status desktop-status-blue" aria-hidden="true"></span><span class="desktop-label-text">Fundamentals of ZKPs</span></span>
+          </button>
+          <button class="desktop-item desktop-item-pixymon" type="button" data-project="pixymon" aria-label="Open Pixymon">
+            <span class="folder-art folder-art-pink" aria-hidden="true">
+              <img src="assets/folders/folder-pink.png" alt="" />
+            </span>
+            <span class="desktop-label"><span class="desktop-status desktop-status-red" aria-hidden="true"></span><span class="desktop-label-text">Pixymon</span></span>
+          </button>
+          <button class="desktop-item desktop-item-nansen" type="button" data-project="nansen" aria-label="Open Nansen City">
+            <span class="folder-art folder-art-green" aria-hidden="true">
+              <img src="assets/folders/folder-green.png" alt="" />
+            </span>
+            <span class="desktop-label"><span class="desktop-status desktop-status-green" aria-hidden="true"></span><span class="desktop-label-text">Nansen City</span></span>
+          </button>
+          <button class="desktop-item desktop-item-kalshi" type="button" data-project="kalshi" aria-label="Open Kalshi APAC Dashboard">
+            <span class="folder-art folder-art-purple" aria-hidden="true">
+              <img src="assets/folders/folder-purple.png" alt="" />
+            </span>
+            <span class="desktop-label"><span class="desktop-status desktop-status-kalshi" aria-hidden="true"></span><span class="desktop-label-text">Kalshi APAC Dashboard</span></span>
+          </button>
+          <button class="desktop-item desktop-item-github" type="button" data-project="github-candles" aria-label="Open GitHub Candles">
+            <span class="folder-art folder-art-blue" aria-hidden="true">
+              <img src="assets/folders/folder-blue.png" alt="" />
+            </span>
+            <span class="desktop-label"><span class="desktop-status desktop-status-green" aria-hidden="true"></span><span class="desktop-label-text">GitHub Candles</span></span>
+          </button>
+          <button class="desktop-item desktop-item-tip" type="button" data-project="tip-on-arc" aria-label="Open Tip on Arc">
+            <span class="folder-art folder-art-tan" aria-hidden="true">
+              <img src="assets/folders/folder-tan.png" alt="" />
+            </span>
+            <span class="desktop-label"><span class="desktop-status desktop-status-navy" aria-hidden="true"></span><span class="desktop-label-text">Tip on Arc</span></span>
+          </button>
+          <button class="desktop-item desktop-item-terminal" type="button" data-project="pixy-terminal" aria-label="Open PIXY Terminal">
+            <span class="folder-art folder-art-navy" aria-hidden="true">
+              <img src="assets/folders/folder-navy.png" alt="" />
+            </span>
+            <span class="desktop-label"><span class="desktop-status desktop-status-purple" aria-hidden="true"></span><span class="desktop-label-text">PIXY Terminal</span></span>
+          </button>
+          <button class="desktop-item desktop-item-narkina" type="button" data-project="narkina5" aria-label="Open Narkina5">
+            <span class="folder-art folder-art-magenta" aria-hidden="true">
+              <img src="assets/folders/folder-magenta.png" alt="" />
+            </span>
+            <span class="desktop-label"><span class="desktop-status desktop-status-orange" aria-hidden="true"></span><span class="desktop-label-text">Narkina5</span></span>
+          </button>
         </section>
-
-        <div class="content-layout">
-          <section class="main-column" id="notes">
-            <section class="list-section">
-              <div class="section-heading">
-                <p class="section-label section-label-prominent">Writing &amp; Projects</p>
-              </div>
-
-              <article class="entry">
-                <h2>
-                  <a
-                    class="entry-title-link"
-                    href="https://medium.com/@pixy7/fundamentals-of-zkps-ac737a39cfff"
-                    target="_blank"
-                    rel="noreferrer"
-                    >Fundamentals of ZKPs</a
-                  >
-                </h2>
-                <p>
-                  An introduction to zero-knowledge proofs, why they matter for
-                  privacy and scalability, and where they fit in blockchain
-                  systems.
-                </p>
-                <div class="entry-links">
-                  <a
-                    href="https://medium.com/@pixy7/fundamentals-of-zkps-ac737a39cfff"
-                    target="_blank"
-                    rel="noreferrer"
-                    >Medium</a
-                  >
-                </div>
-              </article>
-
-              <article class="entry">
-                <h2>Pixymon</h2>
-                <p>
-                  A character-driven X agent that digests onchain signals,
-                  builds memory, and posts with a growing narrative instead of
-                  acting like a market-summary bot.
-                </p>
-                <div class="entry-links">
-                  <a href="https://x.com/Pixy_mon" target="_blank" rel="noreferrer"
-                    >X</a
-                  >
-                  <a
-                    href="https://github.com/starlash7/Pixymon"
-                    target="_blank"
-                    rel="noreferrer"
-                    >GitHub</a
-                  >
-                </div>
-              </article>
-
-              <article class="entry">
-                <h2>
-                  <a
-                    class="entry-title-link"
-                    href="https://github.com/starlash7/Nansen-City"
-                    target="_blank"
-                    rel="noreferrer"
-                    >Nansen City</a
-                  >
-                </h2>
-                <p>
-                  A broadcast-style onchain city map for Nansen CLI that turns
-                  market signals into a more legible visual surface.
-                </p>
-                <div class="entry-links">
-                  <a
-                    href="https://github.com/starlash7/Nansen-City"
-                    target="_blank"
-                    rel="noreferrer"
-                    >GitHub</a
-                  >
-                </div>
-              </article>
-
-              <article class="entry">
-                <h2>
-                  <a
-                    class="entry-title-link"
-                    href="https://dune.com/starlash7/kalshi-apac-dashboard"
-                    target="_blank"
-                    rel="noreferrer"
-                    >Kalshi APAC Dashboard</a
-                  >
-                </h2>
-                <p>
-                  A Dune dashboard for tracking Kalshi activity from an APAC
-                  perspective.
-                </p>
-                <div class="entry-links">
-                  <a
-                    href="https://dune.com/starlash7/kalshi-apac-dashboard"
-                    target="_blank"
-                    rel="noreferrer"
-                    >Dune</a
-                  >
-                </div>
-              </article>
-            </section>
-          </section>
-
-          <aside class="side-column" id="previously">
-            <section class="side-section">
-              <p class="section-label">Previously</p>
-              <ul class="experience-list">
-                <li>
-                  <span class="experience-logo experience-logo-light">
-                    <img src="assets/logos/a41-white.png" alt="A41 logo" />
-                  </span>
-                  <span class="experience-copy">GTM at A41</span>
-                </li>
-                <li>
-                  <span class="experience-logo">
-                    <img src="assets/logos/bnb-chain.png" alt="BNB Chain logo" />
-                  </span>
-                  <span class="experience-copy">DevRel at Martian, BNB Chain</span>
-                </li>
-                <li>
-                  <span class="experience-logo">
-                    <img
-                      src="assets/logos/blockchain-valley.png"
-                      alt="Blockchain Valley logo"
-                    />
-                  </span>
-                  <span class="experience-copy"
-                    >Development &amp; Validator teams at BlockchainValley</span
-                  >
-                </li>
-              </ul>
-            </section>
-          </aside>
-        </div>
       </main>
     </div>
+
+    <nav class="dock" aria-label="Social links">
+      <button class="dock-profile" type="button" aria-label="Open profile" aria-controls="about-window" aria-expanded="false" data-tooltip="Theo Yang">
+        <img class="profile-avatar" src="assets/icons/favicon.png" alt="" />
+      </button>
+      <a class="dock-unit" href="https://unittx.io" target="_blank" rel="noreferrer" aria-label="UNIT TX" data-tooltip="UNIT TX" title="UNIT TX">
+        <img class="dock-unit-logo" src="assets/icons/unittx-mark.png" alt="UNIT TX" />
+      </a>
+      <span class="dock-divider" aria-hidden="true"></span>
+      <a class="dock-item" data-app="x" href="https://x.com/Pixy7Crypto" target="_blank" rel="noreferrer" aria-label="X" data-tooltip="X">
+        <img src="assets/icons/x.svg" alt="" />
+      </a>
+      <a class="dock-item" data-app="github" href="https://github.com/starlash7" target="_blank" rel="noreferrer" aria-label="GitHub" data-tooltip="GitHub">
+        <img src="assets/icons/github.svg" alt="" />
+      </a>
+      <a class="dock-item" data-app="linkedin" href="https://www.linkedin.com/in/pixy7/" target="_blank" rel="noreferrer" aria-label="LinkedIn" data-tooltip="LinkedIn">
+        <img src="assets/icons/linkedin.svg" alt="" />
+      </a>
+      <a class="dock-item" data-app="medium" href="https://medium.com/@pixy7" target="_blank" rel="noreferrer" aria-label="Medium" data-tooltip="Medium">
+        <img src="assets/icons/medium.svg" alt="" />
+      </a>
+    </nav>
+
+    <div class="about-window" id="about-window" data-about-window hidden>
+      <button class="about-backdrop" type="button" data-about-close aria-label="Close profile"></button>
+      <section class="about-card" role="dialog" aria-modal="true" aria-labelledby="about-title">
+        <header class="about-window-bar">
+          <p class="window-title">Profile</p>
+          <button class="window-close" type="button" data-about-close aria-label="Close profile">
+            <span>Close</span>
+            <span aria-hidden="true">×</span>
+          </button>
+        </header>
+
+        <div class="about-card-body">
+          <div class="about-profile">
+            <div class="about-portrait">
+              <img src="assets/icons/favicon.png" alt="Theo Yang" />
+            </div>
+            <div class="about-summary">
+              <p class="about-eyebrow">About me</p>
+              <h2 id="about-title">Theo Yang</h2>
+              <p>Crypto products, writing, and useful experiments.</p>
+            </div>
+          </div>
+
+          <div class="about-copy-block">
+            <p>I build things around crypto that feel useful, simple, and worth coming back to.</p>
+            <p><a href="https://unittx.io" target="_blank" rel="noreferrer">I work at UNIT TX, based in Seoul.</a></p>
+          </div>
+
+          <section class="about-previously" aria-labelledby="previously-title">
+            <p class="about-section-label" id="previously-title">Previously</p>
+            <ul class="about-experience-list">
+              <li>
+                <span class="about-experience-logo about-experience-logo-light">
+                  <img src="assets/logos/a41-white.png" alt="A41 logo" />
+                </span>
+                <span>GTM at A41</span>
+              </li>
+              <li>
+                <span class="about-experience-logo">
+                  <img src="assets/logos/bnb-chain.png" alt="BNB Chain logo" />
+                </span>
+                <span>DevRel at Martian, BNB Chain</span>
+              </li>
+              <li>
+                <span class="about-experience-logo">
+                  <img src="assets/logos/blockchain-valley.png" alt="Blockchain Valley logo" />
+                </span>
+                <span>Development &amp; Validator teams at BlockchainValley</span>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+    </div>
+
+    <div class="project-window" data-project-window hidden>
+      <button class="project-backdrop" type="button" data-project-close aria-label="Close project"></button>
+      <section class="project-dialog" role="dialog" aria-modal="true" aria-labelledby="project-title">
+        <header class="project-dialog-header">
+          <p class="project-dialog-label">Project</p>
+          <button class="window-close" type="button" data-project-close aria-label="Close project">
+            <span>Close</span>
+            <span aria-hidden="true">×</span>
+          </button>
+        </header>
+        <div class="project-dialog-body">
+          <div class="project-dialog-art" data-project-art aria-hidden="true"></div>
+          <p class="project-dialog-type" data-project-type></p>
+          <h2 id="project-title" data-project-title></h2>
+          <p class="project-dialog-description" data-project-description></p>
+          <div class="project-dialog-links" data-project-links></div>
+        </div>
+      </section>
+    </div>
+    <script defer src="script.js"></script>
   </body>
 </html>
