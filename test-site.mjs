@@ -9,6 +9,7 @@ const [html, css, script] = await Promise.all([
 const splashEnterCss = css.match(/\.splash-enter\s*\{([^}]*)\}/)?.[1] || "";
 const splashTransitionCss = css.match(/\.splash-transition\s*\{([^}]*)\}/)?.[1] || "";
 const homeRevealKeyframes = css.match(/@keyframes home-reveal\s*\{([\s\S]*?)\n\}/)?.[1] || "";
+const mobileCss = css.match(/@media \(max-width:\s*720px\)\s*\{([\s\S]*?)\n\}\n\n@media \(prefers-reduced-motion/)?.[1] || "";
 
 assert.match(html, /class="splash"/, "first-visit splash should be present");
 assert.match(html, /class="splash-content"/, "splash should contain the intro content");
@@ -109,6 +110,8 @@ assert.match(css, /prefers-reduced-motion/, "reduced-motion behavior should be s
 assert.match(css, /font-family:[\s\S]*Inter/, "site should use the new sans-serif type stack");
 assert.match(css, /url\("assets\/background\.png"\)/, "site should use the supplied background image");
 assert.match(css, /url\("assets\/background-mobile\.png"\)/, "mobile should use the supplied portrait background image");
+assert.match(mobileCss, /body\s*\{[\s\S]*padding-bottom:\s*0/, "mobile should not reserve an extra page-height below the content");
+assert.match(mobileCss, /\.page-shell\s*\{[^}]*padding:\s*18px 0 0;/, "mobile page shell should end at the viewport content");
 assert.match(css, /\.splash[\s\S]*background:\s*#050505/, "intro should use a black background");
 assert.match(css, /\.pixel-drift-canvas[\s\S]*cursor:\s*crosshair/, "intro canvas should support pointer interaction");
 assert.match(css, /background-size:\s*cover/, "supplied background should cover the viewport");
@@ -117,9 +120,14 @@ assert.doesNotMatch(css, /background: #e3d7c7/, "main profile should not use a b
 assert.doesNotMatch(css, /background: #e9e2d8/, "dock profile should not use a beige background");
 assert.match(script, /localStorage/, "splash should be remembered locally");
 assert.match(script, /theo-yang-intro-v2-seen/, "the revised intro should use a fresh storage key");
+assert.match(script, /let splashWasSeen = false/, "intro visibility should be known before particle setup");
+assert.match(script, /!splashWasSeen/, "returning visitors should skip particle setup");
 assert.doesNotMatch(script, /theo-yang-splash-seen/, "the revised intro should not reuse the old splash key");
 assert.match(script, /prefers-reduced-motion/, "splash should respect reduced motion");
 assert.match(script, /getContext\("2d"\)/, "intro should render particles on canvas");
+assert.match(script, /cancelAnimationFrame/, "intro particles should stop their animation loop");
+assert.match(script, /particleAnimationFrame/, "intro should track one particle animation frame");
+assert.match(script, /sampleStep = canvasWidth < 600 \? 4 : 5/, "mobile intro should use a lighter particle sample");
 assert.match(script, /const initialParticleSpread = 10/, "intro particles should start close to their text targets");
 assert.match(script, /const hideSplash = \(\) => splash\.classList\.add\("is-hidden"\)/, "remembered intro should be able to hide itself");
 assert.match(script, /pixelDriftText = "ONCHAIN IN MOTION"/, "intro particle text should be configurable");

@@ -1,4 +1,15 @@
+const splash = document.querySelector("[data-splash]");
+const splashSeenKey = "theo-yang-intro-v2-seen";
+let splashWasSeen = false;
+
+try {
+  splashWasSeen = window.localStorage.getItem(splashSeenKey) === "true";
+} catch {
+  splashWasSeen = false;
+}
+
 const pixelDriftCanvas = document.querySelector("[data-pixel-drift]");
+let stopPixelDrift = () => {};
 
 if (pixelDriftCanvas) {
   const pixelDriftText = "ONCHAIN IN MOTION";
@@ -15,7 +26,20 @@ if (pixelDriftCanvas) {
     let canvasWidth = 0;
     let canvasHeight = 0;
     let devicePixelRatio = 1;
+    let particleAnimationFrame = null;
+    let particleAnimationActive = false;
     const initialParticleSpread = 10;
+
+    const stopParticleAnimation = () => {
+      particleAnimationActive = false;
+
+      if (particleAnimationFrame !== null) {
+        window.cancelAnimationFrame(particleAnimationFrame);
+        particleAnimationFrame = null;
+      }
+    };
+
+    stopPixelDrift = stopParticleAnimation;
 
     const createParticles = () => {
       const bounds = pixelDriftCanvas.getBoundingClientRect();
@@ -47,7 +71,7 @@ if (pixelDriftCanvas) {
       textContext.fillText(pixelDriftText, canvasWidth / 2, canvasHeight * 0.44);
 
       const pixels = textContext.getImageData(0, 0, canvasWidth, canvasHeight).data;
-      const sampleStep = canvasWidth < 600 ? 3 : 5;
+      const sampleStep = canvasWidth < 600 ? 4 : 5;
       const targets = [];
 
       for (let y = 0; y < canvasHeight; y += sampleStep) {
@@ -78,7 +102,15 @@ if (pixelDriftCanvas) {
       });
     };
 
+    const scheduleParticleAnimation = () => {
+      if (!particleAnimationActive || particleAnimationFrame !== null) return;
+      particleAnimationFrame = window.requestAnimationFrame(drawParticles);
+    };
+
     const drawParticles = () => {
+      particleAnimationFrame = null;
+      if (!particleAnimationActive) return;
+
       pixelDriftContext.clearRect(0, 0, canvasWidth, canvasHeight);
 
       particles.forEach((particle) => {
@@ -108,7 +140,7 @@ if (pixelDriftCanvas) {
         pixelDriftContext.fillRect(particle.x, particle.y, particle.size, particle.size);
       });
 
-      if (!pixelDriftReducedMotion) window.requestAnimationFrame(drawParticles);
+      scheduleParticleAnimation();
     };
 
     const updatePointer = (event) => {
@@ -120,16 +152,21 @@ if (pixelDriftCanvas) {
       };
     };
 
-    createParticles();
-    drawParticles();
+    if (!pixelDriftReducedMotion && !splashWasSeen && !splash?.classList.contains("is-hidden")) {
+      createParticles();
+      particleAnimationActive = true;
+      scheduleParticleAnimation();
+    }
+
     pixelDriftCanvas.addEventListener("pointermove", updatePointer);
     pixelDriftCanvas.addEventListener("pointerleave", () => {
       pointer.active = false;
     });
     pixelDriftCanvas.addEventListener("click", replayParticles);
     window.addEventListener("resize", () => {
+      if (!particleAnimationActive) return;
       createParticles();
-      drawParticles();
+      scheduleParticleAnimation();
     });
   }
 }
@@ -174,19 +211,9 @@ if (aboutWindow && dockProfile) {
   });
 }
 
-const splash = document.querySelector("[data-splash]");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const splashSeenKey = "theo-yang-intro-v2-seen";
 
 if (splash) {
-  let hasSeenSplash = false;
-
-  try {
-    hasSeenSplash = window.localStorage.getItem(splashSeenKey) === "true";
-  } catch {
-    hasSeenSplash = false;
-  }
-
   const splashTransition = splash.querySelector("[data-splash-transition]");
   const splashEnter = splash.querySelector("[data-splash-enter]");
   const transitionText = "entering the world.";
@@ -199,6 +226,7 @@ if (splash) {
   const enterSplash = () => {
     if (splash.classList.contains("is-transitioning") || splash.classList.contains("is-hidden")) return;
 
+    stopPixelDrift();
     splash.classList.add("is-transitioning");
     splashEnter?.setAttribute("disabled", "true");
     splashTransition?.setAttribute("aria-hidden", "false");
@@ -228,7 +256,7 @@ if (splash) {
 
   splashEnter?.addEventListener("click", enterSplash);
 
-  if (reducedMotion || hasSeenSplash) {
+  if (reducedMotion || splashWasSeen) {
     hideSplash();
   } else {
     try {
