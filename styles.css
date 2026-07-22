@@ -276,7 +276,7 @@ ul {
   width: 60px;
   height: 60px;
   padding: 2px;
-  border: 1px solid rgba(255, 255, 255, 0.24);
+  border: 0;
   border-radius: 50%;
   background: transparent;
   box-shadow: none;
@@ -306,8 +306,8 @@ ul {
 
 .dock-unit-logo {
   display: block;
-  width: 56%;
-  height: 56%;
+  width: 75%;
+  height: 75%;
   object-fit: contain;
 }
 
@@ -417,7 +417,7 @@ ul {
   display: grid;
   justify-items: center;
   gap: 8px;
-  width: 100px;
+  width: 80px;
   padding: 0;
   border: 0;
   background: transparent;
@@ -491,8 +491,8 @@ ul {
 .folder-art {
   position: relative;
   display: block;
-  width: 100px;
-  height: 82px;
+  width: 80px;
+  height: 66px;
   filter: drop-shadow(0 12px 14px rgba(48, 65, 84, 0.16));
   transition: transform 180ms ease;
 }
@@ -514,8 +514,8 @@ ul {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 100px;
-  max-width: 100px;
+  width: 80px;
+  max-width: 80px;
   color: var(--text);
   font-size: 0.78rem;
   font-weight: 600;
@@ -525,7 +525,7 @@ ul {
 }
 
 .desktop-label-text {
-  max-width: 84px;
+  max-width: 60px;
   text-align: left;
 }
 

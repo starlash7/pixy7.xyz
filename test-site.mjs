@@ -10,6 +10,9 @@ const splashEnterCss = css.match(/\.splash-enter\s*\{([^}]*)\}/)?.[1] || "";
 const splashTransitionCss = css.match(/\.splash-transition\s*\{([^}]*)\}/)?.[1] || "";
 const homeRevealKeyframes = css.match(/@keyframes home-reveal\s*\{([\s\S]*?)\n\}/)?.[1] || "";
 const mobileCss = css.match(/@media \(max-width:\s*720px\)\s*\{([\s\S]*?)\n\}\n\n@media \(prefers-reduced-motion/)?.[1] || "";
+const desktopDockProfileCss = css.match(/\.dock-profile\s*\{([^}]*)\}/)?.[1] || "";
+const desktopDockUnitLogoCss = css.match(/\.dock-unit-logo\s*\{([^}]*)\}/)?.[1] || "";
+const desktopFolderCss = css.match(/\.folder-art\s*\{([^}]*)\}/)?.[1] || "";
 
 assert.match(html, /class="splash"/, "first-visit splash should be present");
 assert.match(html, /class="splash-content"/, "splash should contain the intro content");
@@ -70,7 +73,7 @@ assert.match(script, /"pixy-terminal"/, "PIXY Terminal should be included in pro
 assert.match(script, /narkina5/, "Narkina5 should be included in project data");
 assert.match(css, /\.desktop[\s\S]*position:\s*relative/, "project surface should behave like a desktop");
 assert.match(css, /\.desktop-item[\s\S]*position:\s*absolute/, "desktop folders should have freeform positions");
-assert.match(css, /\.folder-art[\s\S]*width:\s*100px;[\s\S]*height:\s*82px;/, "desktop folders should use a compact portrait ratio");
+assert.match(desktopFolderCss, /width:\s*80px;[\s\S]*height:\s*66px;/, "desktop folders should use a smaller portrait ratio");
 assert.match(css, /\.desktop-item-zkps[\s\S]*--desktop-tilt:\s*0deg/, "folders should sit upright");
 assert.match(css, /\.site-header[\s\S]*justify-content:\s*flex-start/, "Theo Yang should sit at the left edge of the page");
 assert.match(css, /\.brand[\s\S]*color:\s*#fff/, "Theo Yang should use white text");
@@ -102,8 +105,11 @@ assert.match(css, /\.dock-unit\s*\{/, "UNIT TX shortcut should share the dock tr
 assert.match(css, /\.dock-unit\s*\{[\s\S]*padding:\s*5px/, "UNIT TX logo should use a comparable visual scale");
 assert.match(css, /\.dock-unit\s*\{[\s\S]*overflow:\s*visible/, "UNIT TX tooltip should not be clipped by its button");
 assert.match(css, /\.dock-unit-logo[\s\S]*object-fit:\s*contain/, "UNIT TX logo should fit inside its dock button");
-assert.match(css, /\.dock-unit-logo\s*\{[\s\S]*width:\s*56%[\s\S]*height:\s*56%/, "UNIT TX logo should match the desktop social icon scale");
+assert.match(desktopDockProfileCss, /border:\s*0/, "desktop profile shortcut should not show an outer border");
+assert.match(desktopDockUnitLogoCss, /width:\s*75%[\s\S]*height:\s*75%/, "desktop UNIT TX logo should be visually larger");
 assert.match(css, /@media \(max-width:\s*720px\)[\s\S]*\.dock-profile\s*\{[\s\S]*border:\s*0/, "mobile profile shortcut should not show an outer border");
+assert.match(mobileCss, /\.desktop-item\s*\{[^}]*width:\s*72px/, "mobile folder buttons should keep their existing size");
+assert.match(mobileCss, /\.folder-art\s*\{[^}]*width:\s*72px;[^}]*height:\s*59px/, "mobile folders should keep their existing size");
 assert.match(css, /@media \(max-width:\s*720px\)[\s\S]*\.dock-unit-logo\s*\{[\s\S]*width:\s*75%/, "mobile UNIT TX logo should match the social icon scale");
 assert.doesNotMatch(css, /width:\s*135%/, "UNIT TX logo should not overflow its mobile button");
 assert.match(css, /prefers-reduced-motion/, "reduced-motion behavior should be styled");
