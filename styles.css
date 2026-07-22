@@ -970,7 +970,7 @@ ul {
 
   .desktop {
     display: block;
-    height: max(760px, calc(100svh - 18px));
+    height: calc(100svh - 18px);
     min-height: 0;
     padding: 54px 0 132px;
   }
@@ -982,7 +982,7 @@ ul {
   .desktop-item {
     position: absolute;
     inset: auto;
-    width: 72px;
+    width: 56px;
     transform: none;
   }
 
@@ -992,78 +992,75 @@ ul {
   }
 
   .desktop-item-zkps {
-    top: 32%;
-    left: 2%;
+    top: 28%;
+    left: 0;
   }
 
   .desktop-item-pixymon {
-    top: 5%;
-    left: 72%;
+    top: 3%;
+    left: calc(100% - 56px);
   }
 
   .desktop-item-nansen {
-    top: 20%;
-    left: 36%;
+    top: 17%;
+    left: calc(50% - 28px);
   }
 
   .desktop-item-kalshi {
-    top: 38%;
-    left: 70%;
+    top: 32%;
+    left: calc(100% - 56px);
   }
 
   .desktop-item-github {
-    top: 49%;
+    top: 43%;
     left: 0;
   }
 
   .desktop-item-tip {
-    top: 76%;
-    left: 72%;
+    top: clamp(420px, calc(100svh - 350px), 520px);
+    left: calc(100% - 56px);
   }
 
   .desktop-item-terminal {
-    top: 71%;
-    left: 1%;
+    top: clamp(420px, calc(100svh - 350px), 520px);
+    left: 0;
   }
 
   .desktop-item-narkina {
-    top: 58%;
-    left: 40%;
+    top: 49%;
+    left: calc(50% - 28px);
   }
 
   .desktop-item-kalshi .desktop-label {
-    gap: 4px;
-    font-size: 0.58rem;
+    gap: 3px;
+    font-size: 0.55rem;
   }
 
   .desktop-item-kalshi .desktop-label-text {
-    max-width: 54px;
+    max-width: 43px;
     white-space: normal;
   }
 
   .folder-art {
-    width: 72px;
-    height: 59px;
-  }
-
-  .desktop-item-nansen .folder-art {
-    width: 72px;
-    height: 59px;
+    width: 56px;
+    height: 46px;
   }
 
   .desktop-label {
-    width: 72px;
-    max-width: 72px;
+    gap: 4px;
+    width: 56px;
+    max-width: 56px;
+    font-size: 0.68rem;
   }
 
   .desktop-label-text {
-    max-width: 58px;
+    max-width: 42px;
   }
 
   .desktop-status {
-    flex-basis: 10px;
-    width: 10px;
-    height: 10px;
+    flex-basis: 8px;
+    width: 8px;
+    height: 8px;
   }
 
   .dock {

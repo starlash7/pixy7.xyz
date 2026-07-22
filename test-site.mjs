@@ -108,8 +108,13 @@ assert.match(css, /\.dock-unit-logo[\s\S]*object-fit:\s*contain/, "UNIT TX logo 
 assert.match(desktopDockProfileCss, /border:\s*0/, "desktop profile shortcut should not show an outer border");
 assert.match(desktopDockUnitLogoCss, /width:\s*75%[\s\S]*height:\s*75%/, "desktop UNIT TX logo should be visually larger");
 assert.match(css, /@media \(max-width:\s*720px\)[\s\S]*\.dock-profile\s*\{[\s\S]*border:\s*0/, "mobile profile shortcut should not show an outer border");
-assert.match(mobileCss, /\.desktop-item\s*\{[^}]*width:\s*72px/, "mobile folder buttons should keep their existing size");
-assert.match(mobileCss, /\.folder-art\s*\{[^}]*width:\s*72px;[^}]*height:\s*59px/, "mobile folders should keep their existing size");
+assert.match(mobileCss, /\.desktop-item\s*\{[^}]*width:\s*56px/, "mobile folder buttons should use the compact size");
+assert.match(mobileCss, /\.folder-art\s*\{[^}]*width:\s*56px;[^}]*height:\s*46px/, "mobile folders should use the compact size");
+assert.match(mobileCss, /\.desktop-label\s*\{[^}]*width:\s*56px;[^}]*max-width:\s*56px/, "mobile labels should align with the compact folders");
+assert.match(mobileCss, /\.desktop\s*\{[\s\S]*height:\s*calc\(100svh - 18px\)/, "mobile project surface should fit the viewport height");
+assert.match(mobileCss, /\.desktop-item-pixymon[\s\S]*left:\s*calc\(100% - 56px\)/, "mobile right folders should sit against the content edge");
+assert.match(mobileCss, /\.desktop-item-github[\s\S]*left:\s*0/, "mobile left folders should sit against the content edge");
+assert.match(mobileCss, /\.desktop-item-tip[\s\S]*top:\s*clamp\(/, "mobile bottom folders should stay above the dock across viewport heights");
 assert.match(css, /@media \(max-width:\s*720px\)[\s\S]*\.dock-unit-logo\s*\{[\s\S]*width:\s*75%/, "mobile UNIT TX logo should match the social icon scale");
 assert.doesNotMatch(css, /width:\s*135%/, "UNIT TX logo should not overflow its mobile button");
 assert.match(css, /prefers-reduced-motion/, "reduced-motion behavior should be styled");
